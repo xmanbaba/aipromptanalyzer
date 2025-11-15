@@ -1,0 +1,5 @@
+{
+  "name": "CRAFT Prompt Analyzer",
+  "description": "An application to help users write effective prompts using the C.R.A.F.T. framework (Context, Role, Action, Format, Target Audience/Tone). The AI scores the prompt from 1-10 and provides feedback for improvement.",
+  "requestFramePermissions": []
+}
