@@ -1,5 +1,4 @@
 import React from 'react';
-import { Sparkles } from './Icons';
 
 interface ExamplePromptsProps {
   onSelectPrompt: (prompt: string) => void;
@@ -22,22 +21,16 @@ const examples = [
 
 const ExamplePrompts: React.FC<ExamplePromptsProps> = ({ onSelectPrompt }) => {
   return (
-    <div className="bg-white p-6 rounded-xl shadow-card animate-fade-in">
-      <h3 className="text-lg font-bold font-display text-brand-indigo mb-4 flex items-center gap-2">
-        <Sparkles className="w-5 h-5" />
-        Need Inspiration? Try an Example
-      </h3>
-      <div className="space-y-3">
-        {examples.map((example, index) => (
-          <button
-            key={index}
-            onClick={() => onSelectPrompt(example.prompt)}
-            className={`w-full text-left p-3 bg-slate-50 rounded-md hover:shadow-md hover:scale-[1.02] transition-all duration-200 text-sm text-brand-charcoal/80 hover:text-brand-charcoal border-l-4 ${example.color}`}
-          >
-            {example.prompt}
-          </button>
-        ))}
-      </div>
+    <div className="space-y-3 animate-fade-in">
+      {examples.map((example, index) => (
+        <button
+          key={index}
+          onClick={() => onSelectPrompt(example.prompt)}
+          className={`w-full text-left p-3 bg-slate-50 rounded-md hover:shadow-md hover:scale-[1.02] transition-all duration-200 text-sm text-brand-charcoal/80 hover:text-brand-charcoal border-l-4 ${example.color}`}
+        >
+          {example.prompt}
+        </button>
+      ))}
     </div>
   );
 };

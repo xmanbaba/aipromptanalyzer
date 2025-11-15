@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { AnalysisResult, AttachedFile } from './types';
 import { analyzePrompt } from './services/geminiService';
 import ResultsDisplay from './components/ScoreDisplay';
-import { Lightbulb, Paperclip, XCircle, Sparkles, Feather, User, LogOut } from './components/Icons';
+import { Lightbulb, Paperclip, XCircle, Sparkles, Feather, User, LogOut, ChevronDown, ChevronUp } from './components/Icons';
 import CraftTips from './components/CraftTips';
 import ExamplePrompts from './components/ExamplePrompts';
 import PromptingTechniqueSelector from './components/PromptingTechniqueSelector';
@@ -66,6 +66,8 @@ const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [showTips, setShowTips] = useState<boolean>(false);
+  const [showTechniqueSelector, setShowTechniqueSelector] = useState<boolean>(true);
+  const [showExamples, setShowExamples] = useState<boolean>(true);
   const [attachedFiles, setAttachedFiles] = useState<AttachedFile[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
@@ -219,26 +221,64 @@ const App: React.FC = () => {
               </div>
             </div>
 
-            <PromptingTechniqueSelector
-                technique={promptingTechnique}
-                onTechniqueChange={setPromptingTechnique}
-            />
-            
-            <ExamplePrompts onSelectPrompt={handleExampleSelect} />
-            
+            {/* MOVED: Show C.R.A.F.T Prompting Guide button - NOW BEFORE technique selector */}
             <div className="flex justify-center">
               <button
                   onClick={() => setShowTips(!showTips)}
-                  className="text-brand-indigo hover:underline font-medium transition-colors duration-200 flex items-center justify-center gap-1 text-sm py-2 px-4"
+                  className="text-brand-indigo hover:underline font-medium transition-colors duration-200 flex items-center justify-center gap-2 text-sm py-2 px-4"
                   aria-expanded={showTips}
                   aria-controls="craft-tips"
               >
                   <Lightbulb className="w-4 h-4" />
-                  <span>{showTips ? 'Hide Prompting Guide' : 'Show Prompting Guide'}</span>
+                  <span>{showTips ? 'Hide C.R.A.F.T Prompting Guide' : 'Show C.R.A.F.T Prompting Guide'}</span>
+                  {/* Blinking Arrow Animation */}
+                  {!showTips && (
+                    <span className="text-brand-pink animate-pulse text-lg ml-1">→</span>
+                  )}
               </button>
             </div>
             
             {showTips && <CraftTips />}
+
+            {/* Collapsible Technique Selector */}
+            <div className="bg-white p-6 rounded-xl shadow-card animate-fade-in">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-bold font-display text-brand-indigo">Choose Your Prompting Technique</h3>
+                <button
+                  onClick={() => setShowTechniqueSelector(!showTechniqueSelector)}
+                  className="text-brand-indigo hover:text-brand-pink transition-colors p-1"
+                  aria-label={showTechniqueSelector ? "Hide technique selector" : "Show technique selector"}
+                >
+                  {showTechniqueSelector ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+                </button>
+              </div>
+              {showTechniqueSelector && (
+                <PromptingTechniqueSelector
+                  technique={promptingTechnique}
+                  onTechniqueChange={setPromptingTechnique}
+                />
+              )}
+            </div>
+
+            {/* Collapsible Example Prompts */}
+            <div className="bg-white p-6 rounded-xl shadow-card animate-fade-in">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-bold font-display text-brand-indigo flex items-center gap-2">
+                  <Sparkles className="w-5 h-5" />
+                  Need Inspiration? Try an Example
+                </h3>
+                <button
+                  onClick={() => setShowExamples(!showExamples)}
+                  className="text-brand-indigo hover:text-brand-pink transition-colors p-1"
+                  aria-label={showExamples ? "Hide examples" : "Show examples"}
+                >
+                  {showExamples ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+                </button>
+              </div>
+              {showExamples && (
+                <ExamplePrompts onSelectPrompt={handleExampleSelect} />
+              )}
+            </div>
 
             <button
               onClick={handleSubmit}

@@ -53,11 +53,10 @@ const PromptingTechniqueSelector: React.FC<PromptingTechniqueSelectorProps> = ({
   const selectedTechnique = techniques.find(t => t.id === technique) || techniques[0];
 
   return (
-    <div className="bg-white p-6 rounded-xl shadow-card animate-fade-in">
-      <h3 className="text-lg font-bold font-display text-brand-indigo mb-4">Choose Your Prompting Technique</h3>
+    <div className="animate-fade-in">
       <fieldset>
         <legend className="sr-only">Prompting Technique</legend>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
           {techniques.map((tech) => (
             <label
               key={tech.id}
@@ -83,7 +82,7 @@ const PromptingTechniqueSelector: React.FC<PromptingTechniqueSelectorProps> = ({
         </div>
       </fieldset>
 
-      <div className="mt-4 p-4 bg-slate-50 border border-slate-200 rounded-lg">
+      <div className="p-4 bg-slate-50 border border-slate-200 rounded-lg">
         <div className="flex items-center gap-3 mb-2">
             <selectedTechnique.Icon className="w-6 h-6 text-brand-indigo flex-shrink-0" />
             <h4 className="text-md font-bold text-brand-charcoal">{selectedTechnique.name}</h4>

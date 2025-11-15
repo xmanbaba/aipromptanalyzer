@@ -1,3 +1,2 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* This file can be empty or include global styles */
+/* Tailwind is loaded via CDN in index.html */

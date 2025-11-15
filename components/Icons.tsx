@@ -62,7 +62,6 @@ export const Target: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   </Icon>
 );
 
-// FIX: Add Mic and MicOff icons to be used in LiveConversation.tsx
 export const Mic: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     <Icon {...props}>
       <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
@@ -155,5 +154,17 @@ export const LogOut: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
       <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
       <polyline points="16 17 21 12 16 7"></polyline>
       <line x1="21" y1="12" x2="9" y2="12"></line>
+    </Icon>
+);
+
+export const ChevronDown: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+    <Icon {...props}>
+      <polyline points="6 9 12 15 18 9"></polyline>
+    </Icon>
+);
+
+export const ChevronUp: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+    <Icon {...props}>
+      <polyline points="18 15 12 9 6 15"></polyline>
     </Icon>
 );
