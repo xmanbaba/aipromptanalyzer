@@ -318,6 +318,15 @@ const App: React.FC = () => {
           </div>
         </div>
       </main>
+      
+      {/* Footer with Copyright */}
+      <footer className="bg-white border-t-4 border-brand-indigo py-6 mt-8 shadow-lg">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-center text-base font-bold text-brand-indigo">
+            © 2025 Suleiman Shaibu
+          </p>
+        </div>
+      </footer>
     </div>
   );
 };
